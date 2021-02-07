@@ -1,0 +1,57 @@
+* {
+    margin: 0px;
+    font-family: "Free monospace", monospace;
+    box-sizing: border-box;
+}
+
+[v-cloak] > * {
+    display: none
+}
+
+[v-cloak]::before {
+    content: "loading…"
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.mt-6 {
+    margin-top: 24px;
+}
+
+.button {
+    user-select: none;
+    outline: none;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    background: transparent;
+    border-radius: 6px;
+    transition: 150ms;
+    vertical-align: center;
+    letter-spacing: 1px;
+    color: #54007a;
+    font-size: 14px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: 250ms;
+
+    &:hover {
+        background: #54007a10;
+    }
+}
+
+
+.button:active {
+    background-color: #54007a3a;
+    box-shadow: 0 0px 5px 0px rgba(0,0,0,.2);
+}

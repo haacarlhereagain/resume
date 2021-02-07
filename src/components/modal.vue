@@ -1,126 +1,143 @@
 <template>
-  <div
-    class="modal"
-    :class="{ 'modal--opened' : is_opened }"
-  >
-    <div
-      ref="modal_content"
-      class="modal__wrapper"
-      :style="`max-width: ${width}`"
-    >
-      <div class="modal__container">
-        <slot></slot>
-      </div>
-    </div>
-  </div>
+    <teleport to="#app">
+        <div class="modal" ref="modal">
+            <transition name="fade">
+                <div class="modal-layout flex-row" v-if="isOpened">
+                    <div class="modal-window" :style="style">
+                        <slot></slot>
+                    </div>
+                </div>
+            </transition>
+        </div>
+    </teleport>
 </template>
 
 <script>
-    export default {
-        props: {
-            width: {
-                default() {
-                    return 'calc(100vw - 48px)'
-                }
-            },
-            value: {}
-        },
-        data() {
-            return {
-                close_modal_func: null,
-                is_opened: false
-            }
-        },
-        methods: {
-            openModal() {
-                this.is_opened = true;
-                this.$refs.modal_content.style.display = 'block';
-            },
-            async closeModal() {
-                this.$emit('input', false);
-                this.$el.classList.add('modal--out');
-                setTimeout(() => {
-                    this.$el.classList.remove('modal--out');
-                    this.is_opened = false;
-                    this.close_modal_func = null;
-                    this.$refs.modal_content.style.display = 'none';
-                }, 170)
-            },
-            checkClickEsc() {
-                if (event.key !== 'Escape') return;
-                this.closeModal();
-            }
-        },
-        watch: {
-            value(new_val) {
-                if (new_val) {
-                    this.openModal();
-                    this.close_modal_func = this.checkClickEsc.bind(this);
-                    document.addEventListener('keydown', this.close_modal_func);
-                } else {
-                    document.removeEventListener('keydown', this.close_modal_func);
-                    this.closeModal();
-                }
-            }
-        }
-    }
+	import {defineComponent, computed, ref, onBeforeMount, onBeforeUnmount} from 'vue'
+	import {HaveOpenedModal} from "../const";
+
+	export default defineComponent({
+		emits: ['opened', 'update:isOpened'],
+		props: {
+			isOpened: {
+				type: Boolean,
+				default: () => {
+					return false;
+				}
+			},
+			maxWidth: {
+				type: Number,
+				default: () => {
+					return undefined;
+				}
+			},
+			persistent: {
+				type: Boolean,
+				default: () => {
+					return false;
+				}
+			}
+		},
+		setup(props, {emit}) {
+
+			onBeforeMount(() => {
+				if (!props.persistent) {
+					document.addEventListener('click', checkDocumentClick)
+				}
+			});
+			onBeforeUnmount(() => document.removeEventListener('click', checkDocumentClick));
+
+			let firstLayout = ref(false);
+			const modal = ref(null);
+
+			const isOpened = computed({
+				get: () => {
+					props.isOpened ? openModal() : closeModal();
+					return props.isOpened;
+				},
+				set: (e) => {
+					emit('update:isOpened', e);
+				}
+			})
+
+			const checkDocumentClick = (e) => {
+				const modalLayout = modal.value.children[0];
+				if (modalLayout && modalLayout === e.target) {
+					isOpened.value = false;
+				}
+			}
+
+			const openModal = () => {
+				setZIndex()
+				let html = document.getElementsByTagName('html')[0];
+				firstLayout.value = !html.classList.contains(HaveOpenedModal);
+				if (firstLayout.value) {
+					html.style.overflow = 'hidden';
+					html.classList.add(HaveOpenedModal);
+				}
+			}
+
+			const setZIndex = () => {
+				let zIndex = 200;
+				const childsAppEl = document.getElementById('app').children;
+				for (let child of childsAppEl) {
+					if (child.classList.contains('modal') && child.style.zIndex > zIndex) {
+						zIndex = child.style.zIndex;
+					}
+				}
+				setTimeout(() => modal.value.style.zIndex = zIndex, 0);
+			}
+
+			const closeModal = () => {
+				if (firstLayout.value) {
+					let html = document.getElementsByTagName('html')[0];
+					html.style.overflow = 'auto';
+					html.classList.remove(HaveOpenedModal);
+				}
+				firstLayout.value = false;
+				setTimeout(() => modal.value.zIndex = 199, 0);
+			}
+
+			const style = computed(() => props.maxWidth ? `max-width: ${props.maxWidth}px` : '');
+
+			return {
+				isOpened,
+				firstLayout,
+				style,
+				modal
+			}
+		}
+	})
 </script>
 
-<style lang="scss">
-  .modal {
-    position: fixed;
-    height: 100vh;
-    width: 100%;
-    left: 0px;
-    top: 0px;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    background: #00000053;
-    display: flex;
-    transition: .3s;
-    z-index: 5;
-    overflow: hidden;
-    pointer-events: none;
-    opacity: 0;
+<style lang="scss" scoped>
 
-    &.modal--opened {
-      animation: IN 200ms;
-      opacity: 1;
-      pointer-events: auto;
-    }
+    .modal-layout {
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: fixed;
+        justify-content: center;
+        align-items: center;
+        z-index: 200;
+        background-color: #0000008d;
+        padding: 0px 12px;
 
-    @keyframes IN {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
+        &.fade-enter-active, &.fade-leave-active {
+            transition: opacity 150ms ease;
+        }
 
-    &.modal--out {
-      animation: OUT 200ms;
-    }
+        &.fade-enter-from, &.fade-leave-to {
+            opacity: 0;
+        }
 
-    @keyframes OUT {
-      from {
-        opacity: 1;
-      }
-      to {
-        opacity: 0;
-      }
+        .modal-window {
+            background-color: #fff;
+            border-radius: 6px;
+            position: relative;
+            max-height: 90%;
+            overflow: auto;
+        }
     }
-
-    .modal__wrapper {
-      border-radius: 6px;
-      background: #fff;
-      overflow: hidden;
-      .modal__container {
-        max-height: 90vh;
-        overflow: auto;
-        padding: 12px 20px 20px;
-      }
-    }
-  }
 </style>

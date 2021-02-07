@@ -1,0 +1,74 @@
+{
+  "mainData": {
+    "name": "Александр Халиветов",
+    "role": "Фронтенд-разработчик",
+    "contacts": {
+      "notClicked": {
+        "email": "haacarlhereagain@gmail.com",
+        "phone": "+7-900-070-75-64",
+        "skype": "halcin69"
+      },
+      "clicked": {
+        "github": {
+          "text": "GitHub",
+          "link": "https://github.com/CarolusXII"
+        },
+        "instagram": {
+          "text": "Instagram",
+          "link": "https://www.instagram.com/khalivetoff/"
+        }
+      }
+    }
+  },
+  "skillz": {
+    "title": "Навыки",
+    "values": [
+      "HTML, CSS, JS, TS",
+      "Vue (Vue 3, CompositionAPI), Vuex, Vue-router, Vue-cli",
+      "JQuery, Bootstrap, SASS",
+      "Git, опыт работы с рядом js-библиотек и плагинов",
+      "Webpack"
+    ]
+  },
+  "aboutMe": {
+    "title": "Обо мне",
+    "values": [
+      "Мне ~YEAR, окончил ВУЗ (кафедра ИКТ), военный билет на руках",
+      "Быстро обучаем, готов к активной коммуникации и дальнейшему развитию",
+      "Ответственен и исполнителен",
+      "Имею позитивные взгляды на жизнь"
+    ]
+  },
+
+  "thx": "Спасибо за то, что просмотрели мое портфолио!",
+  "worksPlacesButton": "Опыт работы",
+
+  "modalWorksPlaces": {
+    "title": "Опыт работы",
+    "worksPlaces": [{
+      "title": "ООО \"Технология\"",
+      "values": [
+        {"name": "Период", "value": "С ноября 2020 г. по н.в."},
+        {"name": "Должность", "value": "Фронтент-разработчик"},
+        {"name": "Деятельность", "value": "Разработка клиентской части ИС"},
+        {"name": "Сайт компании", "value": "https://ooo.technology.ru/"}
+      ]
+    }, {
+      "title": "ООО \"Япоки\"",
+      "values": [
+        {"name": "Период", "value": "С августа 2019 г. по ноябрь 2020 г."},
+        {"name": "Должность", "value": "Фронтент-разработчик"},
+        {"name": "Деятельность", "value": "Разработка клиентской части ИС"},
+        {"name": "Сайт компании", "value": "https://yapoki.ru/"}
+      ]
+    },{
+      "title": "Веб-студия \"Некстайп\"",
+      "values": [
+        {"name": "Период", "value": "С мая 2019 г. по июнь 2019 г."},
+        {"name": "Должность", "value": "Стажер-верстальщик"},
+        {"name": "Деятельность", "value": "Натягивание сверстанных блоков на битрикс"},
+        {"name": "Сайт компании", "value": "https://nextype.ru/"}
+      ]
+    }]
+  }
+}

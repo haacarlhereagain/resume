@@ -1,13 +1,9 @@
-import Vue from 'vue'
+import {createApp} from 'vue'
 import App from './App.vue'
-import moment from 'moment'
-Vue.prototype.$moment = moment;
-import { RippleButton } from "./plugins/ripple/ripple";
-import './plugins/ripple/ripple.scss'
-Vue.prototype.$ripple = RippleButton
+import store from './store'
+import './assets/style.scss'
+import '@mdi/font/css/materialdesignicons.min.css'
 
-import '@mdi'
-
-new Vue({
-  render: h => h(App),
-}).$mount('#app')
+const app = createApp(App);
+app.use(store);
+app.mount('#app');
