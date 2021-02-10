@@ -11,20 +11,22 @@
 </template>
 
 <script>
-	import {defineComponent, onBeforeMount, computed, onMounted} from 'vue'
+	import {defineComponent, onBeforeMount, computed, ref} from 'vue'
 	import {useStore} from 'vuex'
 	import {DefaultLang} from "../const";
 	import LangToggle from "./LangToggle";
 	import MainData from "./MainData";
 	import WorksPlacesModal from "./WorksPlacesModal";
 	import AdditionalData from './AdditionalData'
+	import Modal from "./Modal";
 
 	export default defineComponent({
 		components: {
 			LangToggle,
 			MainData,
 			WorksPlacesModal,
-			AdditionalData
+			AdditionalData,
+			Modal
 		},
 		setup() {
 			const $store = useStore();

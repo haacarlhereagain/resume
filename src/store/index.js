@@ -1,10 +1,10 @@
 import {createStore} from 'vuex'
-import {DefaultLang, YearWord, Langs} from "../const";
+import {DefaultLang, YearWord} from "../const";
 import getAge from "../additional/GetAge";
 import axios from 'axios';
 
 const state = {
-	selectedLang: 'ru',
+	selectedLang: undefined,
 	data: {},
 	dataIsReady: false
 }
@@ -29,7 +29,9 @@ const mutations = {
 		localStorage.setItem('selectedLang', payload);
 	},
 	addData: (state, {lang, data}) => state.data[lang] = data,
-	setDataIsReady: state => state.dataIsReady = true
+	setDataIsReady: state => {
+		state.dataIsReady = true
+	}
 }
 
 const actions = {
@@ -40,12 +42,15 @@ const actions = {
 					commit('setLang', getters.data[payload] ? payload : DefaultLang);
 					commit('setDataIsReady');
 				})
+				.catch(e => {
+					dispatch('setLang', DefaultLang);
+				})
 		} else {
 			commit('setLang', payload);
 		}
 	},
-	getData: ({commit, getters}, payload) => {
-		return new Promise(resolve => {
+	getData: ({commit, getters, dispatch}, payload) => {
+		return new Promise((resolve, reject) => {
 			axios({
 				method: 'get',
 				url: `./langs/${payload}.json`
@@ -57,8 +62,8 @@ const actions = {
 					commit('addData', {lang: payload, data: _});
 					resolve();
 				})
-				.catch(e => {
-					resolve();
+				.catch(() => {
+					reject();
 				})
 		})
 	}

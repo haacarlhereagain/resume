@@ -37,25 +37,12 @@
 		setup() {
 			const $store = useStore();
 			const data = computed(() => $store.getters.mainData);
-			const notClickedContacts = computed(() => {
-				try {
-					return data.value.contacts.notClicked;
-				} catch (e) {
-					return {};
-				}
-			})
+			const notClickedContacts = computed(() => data.value.contacts.notClicked)
+			const clickedContacts = computed(() => data.value.contacts.clicked)
 
-            const clickedContacts = computed(() => {
-				try {
-					return data.value.contacts.clicked;
-				} catch (e) {
-					return {};
-				}
-			})
-
-            const name = computed(() => data.value.name);
-            const role = computed(() => data.value.role);
-            const dataIsReady = computed(() => $store.getters.dataIsReady);
+			const name = computed(() => data.value.name);
+			const role = computed(() => data.value.role);
+			const dataIsReady = computed(() => $store.getters.dataIsReady);
 
 			return {
 				ContactIconMap,
@@ -159,9 +146,11 @@
         }
 
     }
+
     @media (max-width: 599px) {
         .main-data {
             padding: 15px 5%;
+
             .main-data__about-me {
                 h1 {
                     white-space: normal;
@@ -169,9 +158,11 @@
             }
         }
     }
+
     @media (max-width: 535px) {
         .main-data {
             height: 340px;
+
             .main-data__about-me {
                 max-width: 300px;
             }

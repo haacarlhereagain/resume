@@ -1,10 +1,10 @@
 <template>
     <div class="flex-row works-places-modal">
-        <button class="button" @click="showModal">опыт работы</button>
+        <button class="button" @click="showModal">{{ worksPlacesButton }}</button>
         <modal
             v-model:isOpened="modal"
             :max-width="950"
-            :persistent="true"
+            persistent
         >
             <div class="modal__content">
                 <div class="modal__title">
@@ -48,12 +48,15 @@
 			const closeModal = () => modal.value = false;
 			const title = computed(() => modalWorksPlaces.value.title);
 			const worksPlaces = computed(() => modalWorksPlaces.value.worksPlaces);
+			const worksPlacesButton = computed(() => $store.getters.worksPlacesButton);
+
 			return {
 				modal,
 				showModal,
 				closeModal,
 				title,
-				worksPlaces
+				worksPlaces,
+				worksPlacesButton
 			}
 		}
 	})

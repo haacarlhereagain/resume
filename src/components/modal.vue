@@ -1,9 +1,14 @@
 <template>
     <teleport to="#app">
-        <div class="modal" ref="modal">
+        <div
+            class="modal"
+            :class="{ 'modal--not-persistent' : !persistent }"
+            ref="modal"
+        >
             <transition name="fade">
-                <div class="modal-layout flex-row" v-if="isOpened">
-                    <div class="modal-window" :style="style">
+                <div class="modal__layout" v-show="isOpened">
+                    <div class="modal__shield" ref="modalShield"></div>
+                    <div class="modal__window" :style="style">
                         <slot></slot>
                     </div>
                 </div>
@@ -40,14 +45,10 @@
 		},
 		setup(props, {emit}) {
 
-			onBeforeMount(() => {
-				if (!props.persistent) {
-					document.addEventListener('click', checkDocumentClick)
-				}
-			});
-			onBeforeUnmount(() => document.removeEventListener('click', checkDocumentClick));
+			onBeforeUnmount(() => document.removeEventListener('mousedown', checkDocumentClick));
 
 			let firstLayout = ref(false);
+			const modalShield = ref(null);
 			const modal = ref(null);
 
 			const isOpened = computed({
@@ -61,19 +62,21 @@
 			})
 
 			const checkDocumentClick = (e) => {
-				const modalLayout = modal.value.children[0];
-				if (modalLayout && modalLayout === e.target) {
+				if (modalShield.value && modalShield.value === e.target) {
 					isOpened.value = false;
 				}
 			}
 
 			const openModal = () => {
-				setZIndex()
+				setZIndex();
 				let html = document.getElementsByTagName('html')[0];
 				firstLayout.value = !html.classList.contains(HaveOpenedModal);
 				if (firstLayout.value) {
 					html.style.overflow = 'hidden';
 					html.classList.add(HaveOpenedModal);
+				}
+				if (!props.persistent) {
+					document.addEventListener('mousedown', checkDocumentClick)
 				}
 			}
 
@@ -81,21 +84,24 @@
 				let zIndex = 200;
 				const childsAppEl = document.getElementById('app').children;
 				for (let child of childsAppEl) {
-					if (child.classList.contains('modal') && child.style.zIndex > zIndex) {
-						zIndex = child.style.zIndex;
+					if (child.classList.contains('modal') && child.style.zIndex >= zIndex) {
+						zIndex = +child.style.zIndex + 1;
 					}
 				}
 				setTimeout(() => modal.value.style.zIndex = zIndex, 0);
 			}
 
 			const closeModal = () => {
+				if (!props.persistent) {
+					document.removeEventListener('mousedown', checkDocumentClick)
+				}
 				if (firstLayout.value) {
 					let html = document.getElementsByTagName('html')[0];
 					html.style.overflow = 'auto';
 					html.classList.remove(HaveOpenedModal);
 				}
 				firstLayout.value = false;
-				setTimeout(() => modal.value.zIndex = 199, 0);
+				setTimeout(() => modal.value.style.zIndex = 199, 0);
 			}
 
 			const style = computed(() => props.maxWidth ? `max-width: ${props.maxWidth}px` : '');
@@ -104,6 +110,7 @@
 				isOpened,
 				firstLayout,
 				style,
+				modalShield,
 				modal
 			}
 		}
@@ -112,17 +119,35 @@
 
 <style lang="scss" scoped>
 
-    .modal-layout {
+    .modal {
+        &.modal--not-persistent {
+            .modal__shield {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .modal__layout {
         top: 0;
         left: 0;
         bottom: 0;
         right: 0;
         position: fixed;
+        display: flex;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
-        z-index: 200;
         background-color: #0000008d;
         padding: 0px 12px;
+        z-index: inherit;
+
+        .modal__shield {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
 
         &.fade-enter-active, &.fade-leave-active {
             transition: opacity 150ms ease;
@@ -132,7 +157,7 @@
             opacity: 0;
         }
 
-        .modal-window {
+        .modal__window {
             background-color: #fff;
             border-radius: 6px;
             position: relative;

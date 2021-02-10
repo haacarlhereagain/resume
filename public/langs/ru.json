@@ -21,13 +21,13 @@
     }
   },
   "skillz": {
-    "title": "Навыки",
+    "title": "Стек",
     "values": [
       "HTML, CSS, JS, TS",
       "Vue (Vue 3, CompositionAPI), Vuex, Vue-router, Vue-cli",
       "JQuery, Bootstrap, SASS",
-      "Git, опыт работы с рядом js-библиотек и плагинов",
-      "Webpack"
+      "Git, Webpack",
+      "Опыт работы с рядом js-библиотек и плагинов"
     ]
   },
   "aboutMe": {
