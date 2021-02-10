@@ -88,7 +88,7 @@
 						zIndex = +child.style.zIndex + 1;
 					}
 				}
-				setTimeout(() => modal.value.style.zIndex = zIndex, 0);
+				setTimeout(() => Modal.value.style.zIndex = zIndex, 0);
 			}
 
 			const closeModal = () => {
@@ -101,7 +101,7 @@
 					html.classList.remove(HaveOpenedModal);
 				}
 				firstLayout.value = false;
-				setTimeout(() => modal.value.style.zIndex = 199, 0);
+				setTimeout(() => Modal.value.style.zIndex = 199, 0);
 			}
 
 			const style = computed(() => props.maxWidth ? `max-width: ${props.maxWidth}px` : '');
@@ -111,7 +111,7 @@
 				firstLayout,
 				style,
 				modalShield,
-				modal
+				Modal
 			}
 		}
 	})
