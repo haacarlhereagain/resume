@@ -27,12 +27,10 @@
     display: inline-block;
     border: none;
     cursor: pointer;
-    background: transparent;
     text-transform: uppercase;
     padding: 10px 16px;
     background: transparent;
     border-radius: 6px;
-    transition: 150ms;
     vertical-align: center;
     letter-spacing: 1px;
     color: #54007a;
@@ -52,6 +50,6 @@
 
 
 .button:active {
-    background-color: #54007a3a;
+    //background-color: #54007a3a;
     box-shadow: 0 0px 5px 0px rgba(0,0,0,.2);
 }

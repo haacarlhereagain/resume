@@ -1,6 +1,7 @@
 <template v-cloak>
-    <div class="main-bg-img"></div>
-    <resume></resume>
+<!--    <div class="main-bg-img"></div>-->
+<!--    <resume></resume>-->
+    <button class="button" v-ripple>button</button>
 </template>
 
 <script>
