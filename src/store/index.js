@@ -19,7 +19,7 @@ const getters = {
 	worksPlacesButton: state => state.data[state.selectedLang].worksPlacesButton,
 	modalWorksPlaces: state => state.data[state.selectedLang].modalWorksPlaces,
 	data: state => state.data,
-	dataIsReady: state => state.dataIsReady
+	dataIsReady: state => state.selectedLang !== undefined,
 }
 
 
@@ -29,9 +29,6 @@ const mutations = {
 		localStorage.setItem('selectedLang', payload);
 	},
 	addData: (state, {lang, data}) => state.data[lang] = data,
-	setDataIsReady: state => {
-		state.dataIsReady = true
-	}
 }
 
 const actions = {
@@ -40,7 +37,6 @@ const actions = {
 			dispatch('getData', payload)
 				.then(() => {
 					commit('setLang', getters.data[payload] ? payload : DefaultLang);
-					commit('setDataIsReady');
 				})
 				.catch(e => {
 					dispatch('setLang', DefaultLang);
