@@ -5,7 +5,7 @@ export const langs = ['ru'];
 export const ContactIconMap = {
 	email: 'mdi mdi-email-outline',
 	phone: 'mdi mdi-phone',
-	skype: 'mdi mdi-skype',
+	telegram: 'mdi mdi-telegram',
 	github: 'mdi mdi-github',
 	instagram: 'mdi mdi-instagram'
 }
