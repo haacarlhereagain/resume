@@ -1,62 +1,45 @@
 import {createStore} from 'vuex'
 import {DefaultLang, YearWord} from "../const";
-import getAge from "../additional/GetAge";
+import getAge from '../additional/GetAge';
 import axios from 'axios';
 
 const state = {
-	selectedLang: undefined,
-	data: {},
-	dataIsReady: false
+	localesData: {},
+	currentLocale: undefined
 }
 
 const getters = {
-	selectedLang: state => state.selectedLang,
-	checkLangInData: state => payload => state.data[payload],
-	mainData: state => state.data[state.selectedLang].mainData,
-	skillz: state => state.data[state.selectedLang].skillz,
-	aboutMe: state => state.data[state.selectedLang].aboutMe,
-	thx: state => state.data[state.selectedLang].thx,
-	worksPlacesButton: state => state.data[state.selectedLang].worksPlacesButton,
-	modalWorksPlaces: state => state.data[state.selectedLang].modalWorksPlaces,
-	data: state => state.data,
-	dataIsReady: state => state.selectedLang !== undefined,
+	currentLocale: state => state.currentLocale,
+	translateData: state => state.localesData[state.currentLocale],
 }
 
 
 const mutations = {
-	setLang: (state, payload) => {
-		state.selectedLang = payload;
-		localStorage.setItem('selectedLang', payload);
+	setLocale: (state, payload) => {
+		state.currentLocale = payload;
 	},
-	addData: (state, {lang, data}) => state.data[lang] = data,
+	addLocale: (state, { locale, localeData }) => state.localesData[locale] = localeData,
 }
 
 const actions = {
-	setLang: ({commit, dispatch, getters}, payload) => {
-		if (!getters.checkLangInData(payload)) {
-			dispatch('getData', payload)
-				.then(() => {
-					commit('setLang', getters.data[payload] ? payload : DefaultLang);
-				})
-				.catch(e => {
-					dispatch('setLang', DefaultLang);
-				})
-		} else {
-			commit('setLang', payload);
+	setLang: async ({commit, dispatch, getters}, locale) => {
+		if (!(locale in state.localesData)) {
+			const localeData = await dispatch('loadLocale', locale);
+			commit('addLocale', { locale, localeData });
 		}
+		commit('setLocale', locale);
 	},
-	getData: ({commit, getters, dispatch}, payload) => {
+	loadLocale: ({commit, getters, dispatch}, locale) => {
 		return new Promise((resolve, reject) => {
 			axios({
 				method: 'get',
-				url: `./langs/${payload}.json`
+				url: `./langs/${locale}.json`
 			})
 				.then(async response => {
-					let age = getAge(payload);
+					let age = getAge(locale);
 					let _ = JSON.parse(JSON.stringify(response.data));
 					_.aboutMe.values[0] = response.data.aboutMe.values[0].replace(YearWord, age)
-					commit('addData', {lang: payload, data: _});
-					resolve();
+					resolve(_);
 				})
 				.catch(() => {
 					reject();

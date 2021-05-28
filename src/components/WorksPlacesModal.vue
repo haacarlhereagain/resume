@@ -43,12 +43,12 @@
 			const $store = useStore();
 
 			let modal = ref(false);
-			const modalWorksPlaces = computed(() => $store.getters.modalWorksPlaces);
+			const modalWorksPlaces = computed(() => $store.getters.translateData.modalWorksPlaces);
 			const showModal = () => modal.value = true;
 			const closeModal = () => modal.value = false;
 			const title = computed(() => modalWorksPlaces.value.title);
 			const worksPlaces = computed(() => modalWorksPlaces.value.worksPlaces);
-			const worksPlacesButton = computed(() => $store.getters.worksPlacesButton);
+			const worksPlacesButton = computed(() => $store.getters.translateData.worksPlacesButton);
 
 			return {
 				modal,

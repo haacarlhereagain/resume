@@ -4,18 +4,29 @@
     "role": "Фронтенд-разработчик",
     "contacts": {
       "notClicked": {
-        "email": "haacarlhereagain@gmail.com",
-        "phone": "+7-900-070-75-64",
-        "telegram": "@khalivetoff"
+        "email": {
+          "text": "haacarlhereagain@gmail.com",
+          "icon": "mdi mdi-email-outline"
+        },
+        "phone": {
+          "text": "+7-900-070-75-64",
+          "icon": "mdi mdi-phone"
+        },
+        "telegram": {
+          "text": "@khalivetoff",
+          "icon": "mdi mdi-telegram"
+        }
       },
       "clicked": {
         "github": {
           "text": "Github",
-          "link": "https://github.com/Khalivetoff"
+          "link": "https://github.com/Khalivetoff",
+          "icon": "mdi mdi-github"
         },
         "instagram": {
           "text": "Instagram",
-          "link": "https://www.instagram.com/khalivetoff/"
+          "link": "https://www.instagram.com/khalivetoff/",
+          "icon": "mdi mdi-instagram"
         }
       }
     }
@@ -24,8 +35,8 @@
     "title": "Стек",
     "values": [
       "HTML, CSS, JS, TS",
-      "Vue (Vue 3, CompositionAPI), Vuex, Vue-router, Vue-cli",
-      "JQuery, Bootstrap, SASS",
+      "Vue (Vue 3, CompositionAPI), Vuex, Vue-router, Vuetify, Buefy, Vue-cli",
+      "JQuery, Bootstrap, SASS, Tailwind",
       "Git, Webpack",
       "Опыт работы с рядом js-библиотек и плагинов"
     ]
@@ -51,7 +62,7 @@
         {"name": "Период", "value": "С ноября 2020 г. по н.в."},
         {"name": "Должность", "value": "Фронтент-разработчик"},
         {"name": "Деятельность", "value": "Разработка клиентской части ИС"},
-        {"name": "Сайт компании", "value": "https://ooo.technology.ru/"}
+        {"name": "Сайт компании", "value": "https://www.instagram.com/ooo.technology/"}
       ]
     }, {
       "title": "ООО \"Япоки\"",

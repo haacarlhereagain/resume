@@ -5,15 +5,15 @@
             v-for="(lang, index) in langs"
             :key="index"
             @click="setLang(lang)"
-            :class="{ 'selected' : selectedLang === lang }"
+            :class="{ 'selected' : checkIsSelectingLang(lang) }"
         >{{ lang }}</span>
     </div>
 </template>
 
 <script>
-	import {defineComponent, computed} from 'vue'
+import {defineComponent, computed, onBeforeMount} from 'vue'
 	import {useStore} from 'vuex'
-	import {langs} from "../const";
+import {DefaultLang, langs} from "../const";
 
 	export default defineComponent({
 		setup() {
@@ -21,12 +21,18 @@
 			const $store = useStore();
 
 			const setLang = (e) => $store.dispatch('setLang', e);
-			const selectedLang = computed(() => $store.getters.selectedLang);
+			const currentLocale = computed(() => $store.getters.currentLocale);
+			const checkIsSelectingLang = lang => currentLocale.value === lang;
+
+      onBeforeMount(() => {
+        let slLS = localStorage.getItem('selectedLang');
+        $store.dispatch('setLang', slLS || DefaultLang);
+      })
 
 			return {
 				langs,
 				setLang,
-				selectedLang
+        checkIsSelectingLang,
 			}
 		}
 	})
