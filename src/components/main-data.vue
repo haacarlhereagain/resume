@@ -1,12 +1,12 @@
 <template>
-  <div class="main-data">
+  <div class="main-data card">
     <div class="main-data__about-me">
-      <h1>{{ mainData.name }}</h1>
-      <span>{{ mainData.role }}</span>
+      <h1 class="default-text">{{ mainData.name }}</h1>
+      <span class="default-text--side">{{ mainData.role }}</span>
     </div>
     <div class="main-data__socials">
       <div
-          class="main-data__item"
+          class="main-data__item default-text"
           v-for="(contact, key) in notClickedContacts"
           :key="key"
       >
@@ -18,8 +18,13 @@
           v-for="(contact, key) in clickedContacts"
           :key="key"
       >
-        <span :class="`main-data__icon ${contact.icon}`"></span>
-        <a :href="contact.link">{{ contact.text }}</a>
+        <a
+            class="main-data__item link-text"
+            :href="contact.link"
+        >
+          <span :class="`main-data__icon ${contact.icon}`"></span>
+          <span>{{ contact.text }}</span>
+        </a>
       </div>
     </div>
     <img class="main-data__avatar" :src="'./img/avatar.jpg'" alt="">
@@ -47,9 +52,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+
 .main-data {
   height: 330px;
-  background: #57007f;
   padding: 30px 55px;
   position: relative;
   overflow: hidden;
@@ -61,13 +66,12 @@ export default defineComponent({
     transform: rotate(65deg);
     right: 300px;
     top: 0px;
-    background: #57007f;
+    //background-color: $card;
     position: absolute;
     z-index: 2;
   }
 
   .main-data__about-me {
-    color: #fff;
     position: relative;
     z-index: 3;
 
@@ -86,7 +90,6 @@ export default defineComponent({
     margin-top: 25px;
     display: flex;
     flex-direction: column;
-    color: #cccccc;
     position: relative;
     z-index: 3;
 
@@ -94,7 +97,6 @@ export default defineComponent({
       display: flex;
       flex-direction: row;
       align-items: center;
-      color: #cccccc;
 
       &:not(:first-child) {
         margin-top: 7px;
@@ -103,16 +105,6 @@ export default defineComponent({
       .main-data__icon {
         font-size: 25px;
         margin-right: 5px;
-        color: #050017;
-      }
-
-      a {
-        color: #cccccc;
-        transition: 150ms;
-
-        &:hover {
-          color: #fff
-        }
       }
     }
   }

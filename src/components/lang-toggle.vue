@@ -1,11 +1,11 @@
 <template>
     <div class="lang-toggle">
         <span
-            class="lang-toggle__button"
+            class="lang-toggle__button default-text"
             v-for="(lang, index) in langs"
             :key="index"
             @click="setLang(lang)"
-            :class="{ 'selected' : checkIsSelectingLang(lang) }"
+            :class="{ 'text--fat' : checkIsSelectingLang(lang) }"
         >{{ lang }}</span>
     </div>
 </template>
@@ -49,19 +49,10 @@ import {DefaultLang, langs} from "../const";
         user-select: none;
 
         .lang-toggle__button {
-            color: #ffffff4f;
             margin: 0px 5px;
             cursor: pointer;
             text-transform: uppercase;
             transition: 150ms;
-
-            &:hover {
-                color: #ffffff7d;
-            }
-
-            &.selected {
-                color: #ffffffb1;
-            }
         }
     }
 </style>

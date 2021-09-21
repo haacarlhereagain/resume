@@ -1,6 +1,6 @@
 import {createStore} from 'vuex'
 import {DefaultLang, YearWord} from "../const";
-import getAge from '../additional/GetAge';
+import getAge from '../utils/GetAge';
 import axios from 'axios';
 
 const state = {

@@ -1,18 +1,14 @@
 <template>
   <div class="flex-row additional-data">
-    <card
-        :data="skillz"
-    ></card>
-    <card
-        :data="aboutMe"
-    ></card>
+    <card :data="skillz"></card>
+    <card :data="aboutMe"></card>
   </div>
 </template>
 
 <script>
 import {defineComponent, computed} from 'vue'
 import {useStore} from 'vuex'
-import Card from "./Card";
+import Card from "./card";
 
 export default defineComponent({
   components: {

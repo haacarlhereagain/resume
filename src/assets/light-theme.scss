@@ -1,0 +1,50 @@
+.footing-background {
+  background-color: #dcf5e5;
+}
+
+.main-data::before {
+  background-color: #f5fffd;
+}
+
+.default-text--light {
+  color: #95c7a7;
+}
+
+.default-text {
+  color: #12291a;
+}
+
+.default-text--side {
+  color: #262626;
+}
+
+.support-text {
+  color: #446951;
+}
+
+.link-text {
+  color: #12291a;
+  transition: 150ms;
+
+  &:hover {
+    color: #2d6340;
+  }
+}
+
+.settings__separator {
+  border-left-color: #12291a;
+}
+
+.border-bottom {
+  border-bottom: solid 2px #e6f0ea;
+}
+
+.border-bottom--alternative {
+  border-bottom: solid 2px #c5f0d6;
+}
+
+.card {
+  border-radius: 9px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 9px;
+  background-color: #f5fffd;
+}

@@ -1,0 +1,57 @@
+.dark-theme {
+
+  &.footing-background {
+    background-color: #000a02;
+  }
+  .footing-background {
+    background-color: #000a02;
+  }
+
+  .main-data::before {
+    background-color: #141414;
+  }
+
+  .default-text--light {
+    color: #95c7a7;
+  }
+
+  .default-text {
+    color: #bcc2bf;
+  }
+
+  .default-text--side {
+    color: #bcc2bf;
+  }
+
+  .support-text {
+    color: #9da6a0;
+  }
+
+  .link-text {
+    color: #bcc2bf;
+    transition: 150ms;
+
+    &:hover {
+      color: #dfede4;
+    }
+  }
+
+  .settings__separator {
+    border-left-color: #12291a;
+  }
+
+  .border-bottom {
+    border-bottom-color: #232b25;
+  }
+
+  .border-bottom--alternative {
+    border-bottom-color: #232b25;
+  }
+
+  .card {
+    border-radius: 9px;
+    box-shadow: none;
+    border: solid 1px #232b25;
+    background-color: #141414;
+  }
+}
