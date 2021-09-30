@@ -1,4 +1,4 @@
-const HaveOpenedModal = 'have-opened-modal';
+const HaveOpenedModal = 'have-opened-h-modal';
 
 export const disableAppScroll = () => {
     document.body.classList.add(HaveOpenedModal);

@@ -7,7 +7,8 @@ class ListenerBuilder {
         resize: new Map(),
         touchstart: new Map(),
         touchmove: new Map(),
-        touchend: new Map()
+        touchend: new Map(),
+        vueClick: new Map()
     };
 
     constructor() {

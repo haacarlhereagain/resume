@@ -4,9 +4,8 @@
 </template>
 
 <script>
-import {defineComponent, ref} from 'vue'
+import {defineComponent} from 'vue'
 import Resume from './components/resume.vue'
-import listenerBuilder from "./shared/utils/listenerBuilder";
 
 export default defineComponent({
   name: 'App',

@@ -5,7 +5,7 @@
         @click="showModal"
         v-wave
     >{{ worksPlacesButton }}</button>
-    <modal
+    <h-modal
         v-model="modal"
         :max-width="950"
     >
@@ -29,7 +29,7 @@
           ></card>
         </div>
       </div>
-    </modal>
+    </h-modal>
   </div>
 </template>
 
@@ -37,9 +37,11 @@
 import {defineComponent, computed, ref} from 'vue'
 import {useStore} from 'vuex'
 import Card from "./card";
+import HModal from "../ui/components/HModal";
 
 export default defineComponent({
   components: {
+    HModal,
     Card
   },
   setup() {
@@ -78,6 +80,8 @@ export default defineComponent({
   flex-direction: column;
   max-height: 100%;
   max-width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
 
   .modal__title {
     width: 100%;
@@ -120,8 +124,15 @@ export default defineComponent({
   }
 }
 
+@media (max-width: 599px) {
+  .modal__content {
+    border-radius: 0px;
+  }
+}
+
 @media (max-width: 850px) {
   .modal__content {
+
     .modal__title {
       padding: 5px 12px;
     }
