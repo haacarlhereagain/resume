@@ -1,5 +1,4 @@
 <template v-cloak>
-  <div id="modalWrapper"></div>
   <resume></resume>
 </template>
 
