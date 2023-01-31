@@ -40,7 +40,7 @@ export default defineComponent({
     const $store = useStore();
     const mainData = computed(() => $store.getters.translateData.mainData)
     const notClickedContacts = computed(() => mainData.value.contacts.notClicked);
-    const clickedContacts = computed(() => mainData.value.contacts.clicked);
+    const clickedContacts = computed(() => mainData.value.contacts.clickable);
 
     return {
       mainData,
