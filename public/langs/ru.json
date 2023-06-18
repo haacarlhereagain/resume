@@ -16,17 +16,17 @@
       "clickable": {
         "telegram": {
           "text": "Telegram",
-          "link": "https://t.me/khalivetoff",
+          "link": "https://t.me/haacarlhereagain",
           "icon": "mdi mdi-telegram"
         },
         "github": {
           "text": "Github",
-          "link": "https://github.com/Khalivetoff",
+          "link": "https://github.com/haacarlhereagain",
           "icon": "mdi mdi-github"
         },
         "instagram": {
           "text": "Instagram",
-          "link": "https://www.instagram.com/khalivetoff/",
+          "link": "https://www.instagram.com/haacarlhereagain/",
           "icon": "mdi mdi-instagram"
         }
       }
