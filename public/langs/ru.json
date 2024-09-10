@@ -7,10 +7,6 @@
         "email": {
           "text": "haacarlhereagain@gmail.com",
           "icon": "mdi mdi-email-outline"
-        },
-        "phone": {
-          "text": "+7-900-070-75-64",
-          "icon": "mdi mdi-phone"
         }
       },
       "clickable": {
@@ -23,26 +19,22 @@
           "text": "Github",
           "link": "https://github.com/haacarlhereagain",
           "icon": "mdi mdi-github"
-        },
-        "instagram": {
-          "text": "Instagram",
-          "link": "https://www.instagram.com/haacarlhereagain/",
-          "icon": "mdi mdi-instagram"
         }
       }
     }
   },
   "skillz": {
-    "title": "Стек",
+    "title": "Хард-скиллы",
     "values": [
+      "Алгоритмы, паттерны, ООП, ФП",
       "HTML, CSS, JS, TS",
-      "Vue (Vue 2 / Vue 3, CompositionAPI), Vuex, Pinia, Vue-router, Vuetify, Quasar, Buefy, Vue-cli, Vite, Nuxt 3",
+      "Vue (Vue 2 / Vue 3, CompositionAPI), Vuex, Pinia, Vue-router, Vuetify, Quasar, Element-plus, Buefy, Vue-cli, Vite, Nuxt 3",
       "Angular, RxJs, Angular-router, Material-angular",
       "React, Redux, React-router, MUI (слабый уровень - пилил пет-проект)",
-      "NodeJS (ExpressJS, NestJS), MongoDB",
+      "NodeJS (ExpressJS, NestJS, Fastify), MongoDB, Mongoose",
       "JQuery, Bootstrap (4, 5), SASS, Tailwind",
       "Git, Webpack",
-      "Опыт работы с большим количеством js-библиотек и плагинов"
+      "Некоммерческий опыт разработки с использованием ряда ЯП (C++, C#, Python, Rust)"
     ]
   },
   "aboutMe": {
@@ -62,11 +54,19 @@
   "modalWorksPlaces": {
     "title": "Опыт работы",
     "worksPlaces": [{
+      "title": "NDA",
+      "values": [
+        {"name": "Период", "value": "С июля 2024. по н.в."},
+        {"name": "Должность", "value": "Старший фронтенд-разработчик (Vue 3)"},
+        {"name": "Деятельность", "value": "NDA"},
+        {"name": "Сайт компании", "value": "NDA"}
+      ]
+    }, {
       "title": "Лоция",
       "values": [
-        {"name": "Период", "value": "С октября 2022. по н.в."},
-        {"name": "Должность", "value": "Старший фронтенд-разработчик (Vue 3)"},
-        {"name": "Деятельность", "value": "Разработка клиентской части ИС"},
+        {"name": "Период", "value": "С октября 2022. по июль 2024"},
+        {"name": "Должность", "value": "Ведущий фронтенд-разработчик (Vue 3), Тимлид"},
+        {"name": "Деятельность", "value": "Заказная разработка (аутсорс)"},
         {"name": "Сайт компании", "value": "https://www.loodsen.ru/"}
       ]
     }, {
@@ -74,7 +74,7 @@
       "values": [
         {"name": "Период", "value": "С июля 2021 г. по октябрь 2022 г."},
         {"name": "Должность", "value": "Фронтент-разработчик (Vue 3, Angular, Nuxt 3)"},
-        {"name": "Деятельность", "value": "Разработка клиентской части ИС"},
+        {"name": "Деятельность", "value": "Заказная разработка (аутсорс)"},
         {"name": "Сайт компании", "value": "https://www.waveaccess.ru/"}
       ]
     },
